@@ -1,0 +1,141 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Bedwars = Instance.new("Frame")
+local Speed = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local AntiKnockback = Instance.new("TextButton")
+local KillAura = Instance.new("TextButton")
+local Aimbot = Instance.new("TextButton")
+local TextButton = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Bedwars.Name = "Bedwars"
+Bedwars.Parent = ScreenGui
+Bedwars.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+Bedwars.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Bedwars.Position = UDim2.new(0.0565085709, 0, 0.599558294, 0)
+Bedwars.Size = UDim2.new(0, 374, 0, 266)
+Bedwars.ZIndex = 2
+
+Speed.Name = "Speed"
+Speed.Parent = Bedwars
+Speed.BackgroundColor3 = Color3.fromRGB(16, 17, 16)
+Speed.BorderColor3 = Color3.fromRGB(24, 24, 24)
+Speed.Position = UDim2.new(0.105975308, 0, 0.364026278, 0)
+Speed.Size = UDim2.new(0, 306, 0, 41)
+Speed.Font = Enum.Font.Highway
+Speed.Text = "Speed"
+Speed.TextColor3 = Color3.fromRGB(255, 255, 255)
+Speed.TextSize = 25.000
+
+TextLabel.Parent = Bedwars
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(8.15978041e-08, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 374, 0, 50)
+TextLabel.Font = Enum.Font.Highway
+TextLabel.Text = "BeamedWare"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 29.000
+TextLabel.TextWrapped = true
+
+AntiKnockback.Name = "AntiKnockback"
+AntiKnockback.Parent = Bedwars
+AntiKnockback.BackgroundColor3 = Color3.fromRGB(16, 17, 16)
+AntiKnockback.BorderColor3 = Color3.fromRGB(24, 24, 24)
+AntiKnockback.Position = UDim2.new(0.105975308, 0, 0.176056311, 0)
+AntiKnockback.Size = UDim2.new(0, 306, 0, 44)
+AntiKnockback.Font = Enum.Font.Highway
+AntiKnockback.Text = "AntiKnockback"
+AntiKnockback.TextColor3 = Color3.fromRGB(255, 255, 255)
+AntiKnockback.TextSize = 25.000
+
+KillAura.Name = "KillAura"
+KillAura.Parent = Bedwars
+KillAura.BackgroundColor3 = Color3.fromRGB(16, 17, 16)
+KillAura.BorderColor3 = Color3.fromRGB(24, 24, 24)
+KillAura.Position = UDim2.new(0.105975308, 0, 0.548236847, 0)
+KillAura.Size = UDim2.new(0, 306, 0, 43)
+KillAura.Font = Enum.Font.Highway
+KillAura.Text = "KillAura"
+KillAura.TextColor3 = Color3.fromRGB(255, 255, 255)
+KillAura.TextSize = 25.000
+KillAura.MouseButton1Click:Connect(function()
+	if KillAura then
+		KillAura = false
+		KillAura.Text = "Killaura"
+	else
+		Killaura = true
+		KillAura.Text = "Killaura (Toggled)"
+		repeat
+			wait(.1)
+			for i,v in pairs(game.Players:GetPlayers()) do
+				local vchr = v.Character
+				if vchr and v~=Player and v.Team~=Player.Team and Character and Character.Humanoid.Health>0 then
+					local vhum = vchr:FindFirstChild("Humanoid")
+					local vroot = vchr:FindFirstChild("HumanoidRootPart")
+					if vhum and vroot and vhum.Health>0 and (vroot.Position-Character.HumanoidRootPart.Position).magnitude<=Range then
+						RemoteFolder.SwordHit:InvokeServer({entityInstance=vchr,weapon=Character.HandInvItem.Value})
+					end
+				end
+			end
+		until not KillAura
+	end
+end)
+
+Aimbot.Name = "Aimbot"
+Aimbot.Parent = Bedwars
+Aimbot.BackgroundColor3 = Color3.fromRGB(16, 17, 16)
+Aimbot.BorderColor3 = Color3.fromRGB(24, 24, 24)
+Aimbot.Position = UDim2.new(0.105975308, 0, 0.739966154, 0)
+Aimbot.Size = UDim2.new(0, 306, 0, 44)
+Aimbot.Font = Enum.Font.Highway
+Aimbot.Text = "Aimbot"
+Aimbot.TextColor3 = Color3.fromRGB(255, 255, 255)
+Aimbot.TextSize = 25.000
+
+TextButton.Parent = Bedwars
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.Position = UDim2.new(0.831272721, 0, 0.0300751887, 0)
+TextButton.Size = UDim2.new(0, 57, 0, 38)
+TextButton.Font = Enum.Font.Highway
+TextButton.Text = "X"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextSize = 29.000
+
+-- Scripts:
+
+local function XYVFIX_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	local bg = script.Parent.Parent.Frame
+	
+	script.Parent.MouseButton1Click:Connect(function()
+	
+		
+		if bg:TweenPosition(UDim2.new(0.34, 0,0.247, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 2) then
+			bg:TweenPosition(UDim2.new(0.542, 0, -0.433, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 2)
+		else
+			if	bg:TweenPosition(UDim2.new(0.542, 0, -0.433, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 2) then
+				bg:TweenPosition(UDim2.new(0.34, 0,0.247, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 2)
+			end
+			end
+	end)
+end
+coroutine.wrap(XYVFIX_fake_script)()
+local function BCEOUOZ_fake_script() -- ScreenGui.Script 
+	local script = Instance.new('Script', ScreenGui)
+
+	print("Hello world!")
+	
+end
+coroutine.wrap(BCEOUOZ_fake_script)()
